@@ -1,93 +1,46 @@
-# ox3apiclient
+For OpenX Reporting access using the Python API Client you will need:
+(examples come from an Ubuntu machine)
 
-A small class to help connect to the OpenX Enterprise API. As of version 0.5.0 it  uses
-[requests_oauthlib](https://github.com/requests/requests-oauthlib) instead of oauth2.
+### 1. Your credentials:
+- consumer_key,
+- consumer_secret,
+- email address and password for your user of your OpenX instance.
 
-It currently supports Python 2.6 - 3.5.
+### 2. install pip and pipenv
 
-As of version 0.4.0, ox3apiclient supports API v2. If your instance is v2,
-set the api_path option to "/ox/4.0".
+ update the package list
+<code>$ sudo apt update</code>
 
-As of version 0.5.0 the client.request method returns a requests.Response object instead of
-urllib2.Response and throws a requests.exceptions.HTTPError instead of urllib2.HTTPError.
-In addition debugging is now available via the standard python logging facility.
+Install pip and pipenv
+<code>$ sudo apt install python3-pip python3-dev
+$ pip3 install --user pipenv</code>
 
-See the [requests documentation](http://docs.python-requests.org/en/latest/) for details.
-
-Basic usage:
-
-````python
-import ox3apiclient
-import logging
-
-ox = ox3apiclient.client_from_file().logon()
-
-ox.logger.setLevel(logging.DEBUG)
-ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
-ox.logger.addHandler(ch)
-
-accounts = ox.get('/account')
-
-order = {
-    'status': 'Active',
-    'name': 'OX3APIClient Object Creation Test',
-    'account_uid': accounts['objects'][0]['account_uid'],
-    'start_date': '2016-06-01 00:00:00'}
-
-new_order = ox.post('/order', data=order)
-
-ox.delete('/order/%s' % new_order['uid'])
-
-ox.logoff()
-````
+Add pipenv (and other python scripts) to PATH
+<code>$ echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc
+$ source ~/.bashrc</code>
 
 
-## Installation
+### 3. Create your virtual environment with pipenv
 
-From Pypi
-
-The last released version (from the master branch) is available at [PyPi](http://pypi.python.org/pypi)
-````
-$ pip install ox3apiclient
-````
+run the following command in your working directory
+<code>$ pipenv shell</code>
 
 
-From Github:
+### 4. Now, being in your virtual environment download the library into your working directory:
 
-Just clone our git repo:
+<code>$ git clone https://github.com/openx/ODS-Python-API-Client.git</code>
 
-````
-$ git clone https://github.com/openx/OX3-Python-API-Client.git
-````
+### 5. Go to the downloaded repository and install the library:
 
-Install the downloaded library:
-````
-python setup.py install
-````
-this will install the current dependencies.
+<code>$ python setup.py install</code>
 
-## Authentication
+Now, setup your Python API Client.
 
-The recommended method of authentication is to use `ox3apiclient.client_from_file`.
-By default this will look for a file named `.ox3rc` in the current current
-directory, but this can be overwritten by specifying a `file_path` parameter. The
-file should be in the following format:
+### 5. Create ".ox3rc" (vim .ox3rc) file in the directory where Python-API-Client library is installed. Format the file as present below:
 
-````
-[ox3apiclient]
+<code>[ox3apiclient]
 envs=
-    dev
     prod
-
-[dev]
-email: you@example.com
-password: password123
-domain: dev.uidomain.com
-realm: dev.uidomain_realm
-consumer_key: 1fc5c9ae...
-consumer_secret: 7c664d68...
-authorization_url: http://custom_sso.uidomain.com/api/index/initiate
 
 [prod]
 email: you@example.com
@@ -96,45 +49,29 @@ domain: uidomain.com
 realm: uidomain_realm
 consumer_key: 1fc5c9ae...
 consumer_secret: 7c664d68...
-````
+api_path: /data/1.0</code>
 
-`ox3apiclient.client_from_file` will use the first `env` by default but this can
-be overwritten by setting the `env` parameter. If your email and password are set
-in `.ox3rc` you can simply chain a call to `logon()`.
 
-Alternatively you can set everything in your code.
-````python
-email = 'you@example.com'
-password = 'password123'
-domain = 'uidomain.com'
-realm = 'uidomain_realm'
-consumer_key = '1fc5c9ae...'
-consumer_secret = '7c664d68...'
+An example of such a config:
 
-ox = ox3apiclient.Client(
-    email=email,
-    password=password,
-    domain=domain,
-    realm=realm,
-    consumer_key=consumer_key,
-    consumer_secret=consumer_secret)
+email: myemail@domain.com
+password: 123qwe456rty
+domain: my2ads-ui3.openxenterprise.com
+realm: my2ads
+consumer_key: 23fa23fa2fas2adsf1asd2asd2asd1asdf2asd33a
+consumer_secret: 123a23aasd2asd33adssd3a2sad2asdsad33asd2
+api_path: /data/1.0
 
-ox.logon(email, password)
-````
 
-    # To run these tests. Install nose (pip install nose)
-    # and run nosetests -sxv tests/  from the root dir
+### 6. Edit 'report_config.py' file - place your request body into the 'settings' variable.
 
-## Tests
+The settings variable is responsible for the request body, you can place there any specific dates / hours / attributes and metrics that will define your report. In this particular example you will pull "Inv_perf_pub" type report for the 15th of June 2019. For more information visit http://openxcorporate-ui3.openxenterprise.com/data/1.0/ods.html
 
-Install nose
+### 7. Run the python script
+- 'pull_fields.py' to see all the available fields
 
-````bash
-pip install nose
-```` 
- 
- and run the following command line from the root:
+<code>$ python pull_fields.py</code>
 
-````bash
-nosetests -sxv tests/
-````
+- 'pull_reports.py' to pull your report
+
+<code>$ python pull_report.py</code>
