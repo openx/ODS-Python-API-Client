@@ -38,7 +38,9 @@ Now, setup your Python API Client.
 
 ### 5. Create ".ox3rc" (vim .ox3rc) file in the directory where Python-API-Client library is installed. Format the file as present below:
 
-<code>[ox3apiclient]
+
+````python
+[ox3apiclient]
 envs=
     prod
 
@@ -61,17 +63,24 @@ realm: my2ads
 consumer_key: 23fa23fa2fas2adsf1asd2asd2asd1asdf2asd33a
 consumer_secret: 123a23aasd2asd33adssd3a2sad2asdsad33asd2
 api_path: /data/1.0
-
+````
 
 ### 6. Edit 'report_config.py' file - place your request body into the 'settings' variable.
 
-The settings variable is responsible for the request body, you can place there any specific dates / hours / attributes and metrics that will define your report. In this particular example you will pull "Inv_perf_pub" type report for the 15th of June 2019. For more information visit http://openxcorporate-ui3.openxenterprise.com/data/1.0/ods.html
+The "settings" variable is responsible for the request body, you can place there any specific dates / hours / attributes and metrics that will define your report. In this particular example you will pull "Inv_perf_pub" type report for the 15th of June 2019. For more information visit http://openxcorporate-ui3.openxenterprise.com/data/1.0/ods.html
+
+If you want to find out what is the date range available for the selected report - please make sure you have the same metrics and attributes in the "data_range" variable as you have in the "settings" variable.
 
 ### 7. Run the python script
 - 'pull_fields.py' to see all the available fields
 
 <code>$ python pull_fields.py</code>
 
+- 'date_range.py' to check what is the available date range for selected report (earliest possible StartData, closest possible EndDate)
+
+<code>$ python pull_report.py</code>
+
 - 'pull_reports.py' to pull your report
 
 <code>$ python pull_report.py</code>
+
