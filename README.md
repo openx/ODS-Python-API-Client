@@ -51,11 +51,16 @@ domain: uidomain.com
 realm: uidomain_realm
 consumer_key: 1fc5c9ae...
 consumer_secret: 7c664d68...
-api_path: /data/1.0</code>
-
+api_path: /data/1.0
+````
 
 An example of such a config:
+````python
+[ox3apiclient]
+envs=
+    prod
 
+[prod]
 email: myemail@domain.com
 password: 123qwe456rty
 domain: my2ads-ui3.openxenterprise.com
