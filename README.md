@@ -17,8 +17,8 @@ Install pip and pipenv
 <code>$ pip3 install --user pipenv</code>
 
 Add pipenv (and other python scripts) to PATH
-<code>$ echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc
-$ source ~/.bashrc</code>
+<code>$ echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc</code>
+<code>$ source ~/.bashrc</code>
 
 
 ### 3. Create your virtual environment with pipenv
