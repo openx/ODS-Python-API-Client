@@ -18,6 +18,7 @@ Install pip and pipenv
 
 Add pipenv (and other python scripts) to PATH
 <code>$ echo "PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc</code>
+
 <code>$ source ~/.bashrc</code>
 
 
