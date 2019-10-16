@@ -3,8 +3,26 @@ import logging
 import requests
 import json
 import report_config
+import my_creds
 
-ox = ox3apiclient.client_from_file().logon()
+# LOAD CREDS FROM 'my_creds.py' file
+email=my_creds.email
+password=my_creds.password
+domain=my_creds.domain
+realm=my_creds.realm
+consumer_key=my_creds.consumer_key
+consumer_secret=my_creds.consumer_secret
+
+ox = ox3apiclient.Client(
+    email=email,
+    password=password,
+    domain=domain,
+    realm=realm,
+    consumer_key=consumer_key,
+    consumer_secret=consumer_secret,
+    api_path='/data/1.0')
+
+ox.logon(email, password)
 
 ox.logger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()

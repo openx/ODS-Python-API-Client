@@ -2,6 +2,7 @@ import ox3apiclient
 import logging
 import requests
 import json
+import post_config 
 import my_creds
 
 # LOAD CREDS FROM 'my_creds.py' file
@@ -19,8 +20,8 @@ ox = ox3apiclient.Client(
     realm=realm,
     consumer_key=consumer_key,
     consumer_secret=consumer_secret,
-    api_path='/data/1.0')
-
+    api_path='/ox/4.0')
+    
 ox.logon(email, password)
 
 ox.logger.setLevel(logging.DEBUG)
@@ -28,4 +29,9 @@ ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
 ox.logger.addHandler(ch)
 
-report = ox.get('/report/fields');
+# YOUR SETTINGS LOADED FROM 'post_config.py' file
+settings = post_config.settings;
+
+print(settings);
+
+results = ox.post('/adunit/', data=settings);
