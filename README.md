@@ -28,7 +28,7 @@ Run the following command in your working directory
 <code>$ pipenv shell</code>
 
 
-### 4. Now, being in your virtual environment download the library into your working directory:
+### 4. Now, being in your virtual environment, download the library into your working directory:
 
 <code>$ git clone https://github.com/openx/ox-ods-python-test</code>
 
@@ -36,19 +36,19 @@ Run the following command in your working directory
 
 <code>$ python setup.py install</code>
 
-Now, setup your Python API Client.
+Now, set up your Python API Client.
 
 ### 6. Edit 'my_creds.py' file - add your credentials.
 
 ### 7. Edit 'report_config.py' file - place your request body into the 'settings' variable.
 
-The "settings" variable is responsible for the request body, you can place there any specific dates / hours / attributes and metrics that will define your report. In this particular example you will pull "Inv_perf_pub" type report for the 15th of June 2019. For more information visit http://openxcorporate-ui3.openxenterprise.com/data/1.0/ods.html
+The "settings" variable is responsible for the request body; in there you can place any specific dates / hours / attributes and metrics that will define your report. That particular example uses "Inv_perf_pub" report template for the 15th of June 2019. For more information visit http://openxcorporate-ui3.openxenterprise.com/data/1.0/ods.html .
 
 If you want to find out what is the date range available for the selected report - please make sure you have the same metrics and attributes in the "data_range" variable as you have in the "settings" variable.
 
 ### 7a. Edit 'post_config.py' file - place your request body into the 'settings' variable.
 
-The "settings" variable is responsible for the request body, you can place there specific attributes when, e.g. creating an ad unit. For more information visit  https://docs.openx.com/Content/developers/platform_api/api_ref.html
+The "settings" variable is responsible for the request body; in there you can place specific attributes to create any UI item, e.g. an ad unit. For more information visit  https://docs.openx.com/Content/developers/platform_api/api_ref.html
 
 ### 8. Run the python script
 - 'pull_fields.py' to see all the available fields
@@ -63,6 +63,6 @@ The "settings" variable is responsible for the request body, you can place there
 
 <code>$ python pull_report.py</code>
 
-- 'ox_post.py' to send a request to our legacy endpoint, can be used to, e.g create a site.
+- 'ox_post.py' to send a request to our legacy endpoint, can be used to create UI items, e.g. an ad unit.
 
 <code>$ python ox_post.py</code>
