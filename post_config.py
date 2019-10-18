@@ -1,0 +1,1 @@
+settings = {"site_uid":"site_uid","name":"adunit_name","status":"Active","type_full":"adunit.mobile","primary_size":"728x90","presentation_format":"display","content_type":"UNCLASSIFIED","tag_type":"json"}

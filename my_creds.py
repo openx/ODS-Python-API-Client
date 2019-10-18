@@ -1,0 +1,6 @@
+email = 'my_email'
+password = 'my_password'
+domain = 'my_oxdomain.com'
+realm = 'my_realm'
+consumer_key ='my_consumer_key'
+consumer_secret = 'my_consumer_secret'
