@@ -30,7 +30,7 @@ Run the following command in your working directory
 
 ### 4. Now, being in your virtual environment, download the library into your working directory:
 
-<code>$ git clone https://github.com/openx/ox-ods-python-test</code>
+<code>$ git clone https://github.com/openx/ODS-Python-API-Client</code>
 
 ### 5. Go to the downloaded repository and install the library:
 
